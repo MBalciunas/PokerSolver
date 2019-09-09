@@ -8,14 +8,14 @@ import java.util.stream.IntStream;
 public class CalculateValue {
 
     public static boolean isRoyalFlush(List<Card> cards) {
-        boolean isOneColor = isOneColor(cards);
+        boolean isOneColor = isFlush(cards);
         boolean isHighestStraight = isHighestStraight(cards);
 
         return isOneColor && isHighestStraight;
     }
 
     public static boolean isStraightFlush(List<Card> hand) {
-        boolean isOneColor = isOneColor(hand);
+        boolean isOneColor = isFlush(hand);
         boolean isStraight =  isStraight(hand);
 
         return isStraight && isOneColor && !isHighestStraight(hand);
@@ -50,7 +50,7 @@ public class CalculateValue {
         return straight.equals(sortedValues);
     }
 
-    private static boolean isOneColor(List<Card> cards) {
+    public static boolean isFlush(List<Card> cards) {
         return cards.stream().map(Card::getSymbols).distinct().count() == 1;
     }
 }

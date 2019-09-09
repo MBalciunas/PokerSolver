@@ -105,4 +105,27 @@ public class CalculateValueTest {
         assertFalse(CalculateValue.isFullHouse(hand));
     }
 
+    @Test
+    public void testIsFlush_True() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.HEART, Values.QUEEN),
+                new Card(Symbols.HEART, Values.QUEEN),
+                new Card(Symbols.HEART, Values.QUEEN),
+                new Card(Symbols.HEART, Values.KING),
+                new Card(Symbols.HEART, Values.TEN));
+
+        assertTrue(CalculateValue.isFlush(hand));
+    }
+
+    @Test
+    public void testIsFlush_False() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.HEART, Values.QUEEN),
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.DIAMOND, Values.KING),
+                new Card(Symbols.CLUB, Values.TEN));
+
+        assertFalse(CalculateValue.isFlush(hand));
+    }
 }
