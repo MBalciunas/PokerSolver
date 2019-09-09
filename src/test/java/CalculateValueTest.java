@@ -58,7 +58,7 @@ public class CalculateValueTest {
     }
 
     @Test
-    public void testIsForOfAKind_True() {
+    public void testIsFourOfAKind_True() {
         List<Card> hand = Arrays.asList(
                 new Card(Symbols.CLUB, Values.KING),
                 new Card(Symbols.HEART, Values.KING),
@@ -70,7 +70,7 @@ public class CalculateValueTest {
     }
 
     @Test
-    public void testIsForOfAKind_False() {
+    public void testIsFourOfAKind_False() {
         List<Card> hand = Arrays.asList(
                 new Card(Symbols.CLUB, Values.QUEEN),
                 new Card(Symbols.HEART, Values.QUEEN),
