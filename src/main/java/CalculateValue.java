@@ -1,4 +1,7 @@
+import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -16,6 +19,11 @@ public class CalculateValue {
         boolean isStraight =  isStraight(hand);
 
         return isStraight && isOneColor && !isHighestStraight(hand);
+    }
+
+    public static boolean isFourOfAKind(List<Card> hand) {
+        Map handValueCountMap = hand.stream().map(Card::getValues).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        return handValueCountMap.containsValue(4L);
     }
 
     private static boolean isStraight(List<Card> hand) {

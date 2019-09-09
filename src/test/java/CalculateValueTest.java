@@ -56,4 +56,28 @@ public class CalculateValueTest {
 
         assertFalse(CalculateValue.isStraightFlush(hand));
     }
+
+    @Test
+    public void testIsForOfAKind_True() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.KING),
+                new Card(Symbols.HEART, Values.KING),
+                new Card(Symbols.CLUB, Values.KING),
+                new Card(Symbols.DIAMOND, Values.KING),
+                new Card(Symbols.CLUB, Values.TEN));
+
+        assertTrue(CalculateValue.isFourOfAKind(hand));
+    }
+
+    @Test
+    public void testIsForOfAKind_False() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.HEART, Values.QUEEN),
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.DIAMOND, Values.KING),
+                new Card(Symbols.CLUB, Values.TEN));
+
+        assertFalse(CalculateValue.isFourOfAKind(hand));
+    }
 }
