@@ -176,4 +176,27 @@ public class CalculateValueTest {
 
         assertFalse(CalculateValue.isThreeOfAKind(hand));
     }
+    @Test
+    public void testIsTwoPair_True() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.KING),
+                new Card(Symbols.HEART, Values.KING),
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.DIAMOND, Values.QUEEN),
+                new Card(Symbols.CLUB, Values.TEN));
+
+        assertTrue(CalculateValue.isTwoPair(hand));
+    }
+
+    @Test
+    public void testIsTwoPair_False() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.HEART, Values.QUEEN),
+                new Card(Symbols.CLUB, Values.KING),
+                new Card(Symbols.DIAMOND, Values.JACK),
+                new Card(Symbols.CLUB, Values.TEN));
+
+        assertFalse(CalculateValue.isTwoPair(hand));
+    }
 }

@@ -3,6 +3,7 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 public class CalculateValue {
 
@@ -21,12 +22,12 @@ public class CalculateValue {
     }
 
     public static boolean isFourOfAKind(List<Card> hand) {
-        Map handValueCountMap = hand.stream().map(Card::getValues).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map handValueCountMap = getValueCountMap(hand);
         return handValueCountMap.containsValue(4L);
     }
 
     public static boolean isFullHouse(List<Card> hand ) {
-        Map handValueCountMap = hand.stream().map(Card::getValues).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map handValueCountMap = getValueCountMap(hand);
         return handValueCountMap.containsValue(3L) && handValueCountMap.containsValue(2L);
     }
 
@@ -41,9 +42,16 @@ public class CalculateValue {
     }
 
     public static boolean isThreeOfAKind(List<Card> hand) {
-        Map handValueCountMap = hand.stream().map(Card::getValues).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        Map handValueCountMap = getValueCountMap(hand);
         return handValueCountMap.containsValue(3L);
     }
+
+    public static boolean isTwoPair(List<Card> hand) {
+        Map<Values, Long> handValueCountMap = getValueCountMap(hand);
+        Stream stream = handValueCountMap.values().stream().filter(value -> value == 2);
+        return stream.count() == 2;
+    }
+
 
     private static boolean isHighestStraight(List<Card> hand) {
         List<Integer> sortedValues =  hand.stream().map(v -> v.getValues().ordinal()).sorted().collect(Collectors.toList());
@@ -56,5 +64,9 @@ public class CalculateValue {
 
     public static boolean isFlush(List<Card> cards) {
         return cards.stream().map(Card::getSymbols).distinct().count() == 1;
+    }
+
+    private static Map<Values, Long> getValueCountMap(List<Card> hand) {
+        return hand.stream().map(Card::getValues).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 }
