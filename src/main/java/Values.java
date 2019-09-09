@@ -1,5 +1,4 @@
 public enum Values {
-    ACE,
     TWO,
     THREE,
     FOUR,
@@ -11,5 +10,6 @@ public enum Values {
     TEN,
     JACK,
     QUEEN,
-    KING
+    KING,
+    ACE,
 }
