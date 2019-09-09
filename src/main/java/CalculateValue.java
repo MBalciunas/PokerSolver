@@ -1,4 +1,3 @@
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -31,7 +30,7 @@ public class CalculateValue {
         return handValueCountMap.containsValue(3L) && handValueCountMap.containsValue(2L);
     }
 
-    private static boolean isStraight(List<Card> hand) {
+    public static boolean isStraight(List<Card> hand) {
         List<Integer> sortedValues =  hand.stream().map(v -> v.getValues().equals(Values.ACE) ? 0 : v.getValues().ordinal())
                 .sorted().collect(Collectors.toList());
 

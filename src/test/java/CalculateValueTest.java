@@ -128,4 +128,28 @@ public class CalculateValueTest {
 
         assertFalse(CalculateValue.isFlush(hand));
     }
+
+    @Test
+    public void testIsStraight_True() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.THREE),
+                new Card(Symbols.HEART, Values.FOUR),
+                new Card(Symbols.CLUB, Values.SEVEN),
+                new Card(Symbols.DIAMOND, Values.FIVE),
+                new Card(Symbols.CLUB, Values.SIX));
+
+        assertTrue(CalculateValue.isStraight(hand));
+    }
+
+    @Test
+    public void testIsStraight_False() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.HEART, Values.FOUR),
+                new Card(Symbols.CLUB, Values.KING),
+                new Card(Symbols.DIAMOND, Values.FIVE),
+                new Card(Symbols.CLUB, Values.SIX));
+
+        assertFalse(CalculateValue.isStraight(hand));
+    }
 }
