@@ -152,4 +152,28 @@ public class CalculateValueTest {
 
         assertFalse(CalculateValue.isStraight(hand));
     }
+
+    @Test
+    public void testIsThreeOfAKind_True() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.KING),
+                new Card(Symbols.HEART, Values.KING),
+                new Card(Symbols.CLUB, Values.KING),
+                new Card(Symbols.DIAMOND, Values.QUEEN),
+                new Card(Symbols.CLUB, Values.TEN));
+
+        assertTrue(CalculateValue.isThreeOfAKind(hand));
+    }
+
+    @Test
+    public void testIsThreeOfAKind_False() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.HEART, Values.QUEEN),
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.DIAMOND, Values.QUEEN),
+                new Card(Symbols.CLUB, Values.TEN));
+
+        assertFalse(CalculateValue.isThreeOfAKind(hand));
+    }
 }

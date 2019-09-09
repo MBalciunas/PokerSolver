@@ -40,6 +40,11 @@ public class CalculateValue {
         return straight.equals(sortedValues);
     }
 
+    public static boolean isThreeOfAKind(List<Card> hand) {
+        Map handValueCountMap = hand.stream().map(Card::getValues).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        return handValueCountMap.containsValue(3L);
+    }
+
     private static boolean isHighestStraight(List<Card> hand) {
         List<Integer> sortedValues =  hand.stream().map(v -> v.getValues().ordinal()).sorted().collect(Collectors.toList());
         int firstValue = Values.TEN.ordinal();
