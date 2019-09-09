@@ -80,4 +80,29 @@ public class CalculateValueTest {
 
         assertFalse(CalculateValue.isFourOfAKind(hand));
     }
+
+    @Test
+    public void testIsFullHouse_True() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.HEART, Values.QUEEN),
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.DIAMOND, Values.KING),
+                new Card(Symbols.CLUB, Values.KING));
+
+        assertTrue(CalculateValue.isFullHouse(hand));
+    }
+
+    @Test
+    public void testIsFullHouse_False() {
+        List<Card> hand = Arrays.asList(
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.HEART, Values.QUEEN),
+                new Card(Symbols.CLUB, Values.QUEEN),
+                new Card(Symbols.DIAMOND, Values.KING),
+                new Card(Symbols.CLUB, Values.TEN));
+
+        assertFalse(CalculateValue.isFullHouse(hand));
+    }
+
 }

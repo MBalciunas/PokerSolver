@@ -26,6 +26,11 @@ public class CalculateValue {
         return handValueCountMap.containsValue(4L);
     }
 
+    public static boolean isFullHouse(List<Card> hand ) {
+        Map handValueCountMap = hand.stream().map(Card::getValues).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+        return handValueCountMap.containsValue(3L) && handValueCountMap.containsValue(2L);
+    }
+
     private static boolean isStraight(List<Card> hand) {
         List<Integer> sortedValues =  hand.stream().map(v -> v.getValues().equals(Values.ACE) ? 0 : v.getValues().ordinal())
                 .sorted().collect(Collectors.toList());
