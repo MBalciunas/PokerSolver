@@ -1,3 +1,5 @@
+package models;
+
 public enum HandValues {
     ROYAL_FLUSH,
     STRAIGHT_FLUSH,

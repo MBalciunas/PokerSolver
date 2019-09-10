@@ -1,4 +1,8 @@
+import models.Card;
+import models.Symbols;
+import models.Values;
 import org.junit.Test;
+import pokerhands.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 
-public class CalculateValueTest {
+public class CalculateHandUtilsTest {
 
     @Test
     public void testCalculateRoyalFlush_True() {
@@ -18,7 +22,7 @@ public class CalculateValueTest {
                 new Card(Symbols.CLUB, Values.JACK),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertTrue(CalculateValue.isRoyalFlush(hand));
+        assertTrue(new RoyalFlush().isPokerHand(hand));
     }
 
     @Test
@@ -30,7 +34,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.JACK),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertFalse(CalculateValue.isRoyalFlush(hand));
+        assertFalse(new RoyalFlush().isPokerHand(hand));
     }
 
     @Test
@@ -42,7 +46,7 @@ public class CalculateValueTest {
                 new Card(Symbols.HEART, Values.FIVE),
                 new Card(Symbols.HEART, Values.FOUR));
 
-        assertTrue(CalculateValue.isStraightFlush(hand));
+        assertTrue(new StraightFlush().isPokerHand(hand));
     }
 
     @Test
@@ -54,7 +58,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.JACK),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertFalse(CalculateValue.isStraightFlush(hand));
+        assertFalse(new StraightFlush().isPokerHand(hand));
     }
 
     @Test
@@ -66,7 +70,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.KING),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertTrue(CalculateValue.isFourOfAKind(hand));
+        assertTrue(new FourOfAKind().isPokerHand(hand));
     }
 
     @Test
@@ -78,7 +82,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.KING),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertFalse(CalculateValue.isFourOfAKind(hand));
+        assertFalse(new FourOfAKind().isPokerHand(hand));
     }
 
     @Test
@@ -90,7 +94,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.KING),
                 new Card(Symbols.CLUB, Values.KING));
 
-        assertTrue(CalculateValue.isFullHouse(hand));
+        assertTrue(new FullHouse().isPokerHand(hand));
     }
 
     @Test
@@ -102,7 +106,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.KING),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertFalse(CalculateValue.isFullHouse(hand));
+        assertFalse(new FullHouse().isPokerHand(hand));
     }
 
     @Test
@@ -114,7 +118,7 @@ public class CalculateValueTest {
                 new Card(Symbols.HEART, Values.KING),
                 new Card(Symbols.HEART, Values.TEN));
 
-        assertTrue(CalculateValue.isFlush(hand));
+        assertTrue(new Flush().isPokerHand(hand));
     }
 
     @Test
@@ -126,7 +130,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.KING),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertFalse(CalculateValue.isFlush(hand));
+        assertFalse(new Flush().isPokerHand(hand));
     }
 
     @Test
@@ -138,7 +142,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.FIVE),
                 new Card(Symbols.CLUB, Values.SIX));
 
-        assertTrue(CalculateValue.isStraight(hand));
+        assertTrue(new Straight().isPokerHand(hand));
     }
 
     @Test
@@ -150,7 +154,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.FIVE),
                 new Card(Symbols.CLUB, Values.SIX));
 
-        assertFalse(CalculateValue.isStraight(hand));
+        assertFalse(new Straight().isPokerHand(hand));
     }
 
     @Test
@@ -162,7 +166,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.QUEEN),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertTrue(CalculateValue.isThreeOfAKind(hand));
+        assertTrue(new ThreeOfAKind().isPokerHand(hand));
     }
 
     @Test
@@ -174,7 +178,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.QUEEN),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertFalse(CalculateValue.isThreeOfAKind(hand));
+        assertFalse(new ThreeOfAKind().isPokerHand(hand));
     }
     @Test
     public void testIsTwoPair_True() {
@@ -185,7 +189,7 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.QUEEN),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertTrue(CalculateValue.isTwoPair(hand));
+        assertTrue(new TwoPair().isPokerHand(hand));
     }
 
     @Test
@@ -197,6 +201,6 @@ public class CalculateValueTest {
                 new Card(Symbols.DIAMOND, Values.JACK),
                 new Card(Symbols.CLUB, Values.TEN));
 
-        assertFalse(CalculateValue.isTwoPair(hand));
+        assertFalse(new TwoPair().isPokerHand(hand));
     }
 }
