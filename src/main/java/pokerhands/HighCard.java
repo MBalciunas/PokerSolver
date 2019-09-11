@@ -16,7 +16,7 @@ public class HighCard implements PokerHand {
     }
 
     @Override
-    public boolean isHigherThan(List hand) {
-        return false;
+    public int compare(List<Card> firstHand, List<Card> secondHand) {
+        return 0;
     }
 }
