@@ -1,7 +1,7 @@
-import models.Card;
+import card.Card;
 import org.junit.Test;
-import pokerhands.PokerHandFactory;
-import pokerhands.PokerHands;
+import pokerhand.PokerHandFactory;
+import enums.PokerHands;
 
 import java.util.List;
 

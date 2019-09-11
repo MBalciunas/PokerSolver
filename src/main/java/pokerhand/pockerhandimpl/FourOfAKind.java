@@ -1,14 +1,16 @@
-package pokerhands;
+package pokerhand.pockerhandimpl;
 
 import java.util.List;
-import java.util.Map;
-import models.Card;
+import card.Card;
+import pokerhand.CalculateHandUtils;
+import pokerhand.PokerHand;
+import enums.PokerHands;
 
 public class FourOfAKind implements PokerHand {
+
     @Override
     public boolean isPokerHand(List<Card> hand) {
-        Map handValueCountMap = CalculateHandUtils.getValueCountMap(hand);
-        return handValueCountMap.containsValue(4L);
+        return CalculateHandUtils.getCardValueCount(hand, 4) == 1;
     }
 
     @Override

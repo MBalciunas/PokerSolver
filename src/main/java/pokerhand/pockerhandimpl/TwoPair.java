@@ -1,12 +1,16 @@
-package pokerhands;
+package pokerhand.pockerhandimpl;
 
-import models.Card;
+import card.Card;
+import pokerhand.CalculateHandUtils;
+import pokerhand.PokerHand;
+import enums.PokerHands;
+
 import java.util.List;
 
-public class TwoPair implements PokerHand  {
+public class TwoPair implements PokerHand {
     @Override
     public boolean isPokerHand(List<Card> hand) {
-        return CalculateHandUtils.getPairCount(hand) == 2;
+        return CalculateHandUtils.getCardValueCount(hand, 2) == 2;
     }
 
     @Override

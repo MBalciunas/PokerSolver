@@ -1,6 +1,6 @@
-import models.Card;
+import card.Card;
 import org.junit.Test;
-import pokerhands.*;
+import pokerhand.pockerhandimpl.*;
 
 import java.util.List;
 

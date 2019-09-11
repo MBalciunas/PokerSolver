@@ -1,6 +1,6 @@
-package models;
+package enums;
 
-public enum Values {
+public enum CardValues {
     TWO,
     THREE,
     FOUR,

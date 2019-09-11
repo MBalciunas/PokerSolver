@@ -1,8 +1,8 @@
-import models.Card;
-import models.Symbols;
-import models.Values;
-import pokerhands.PokerHand;
-import pokerhands.PokerHandFactory;
+import card.Card;
+import enums.CardSymbols;
+import enums.CardValues;
+import pokerhand.PokerHand;
+import pokerhand.PokerHandFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,11 +45,11 @@ public class Main {
 
     private static void fillHandWithCards(List<Card> hand, String number) {
         for(int i = 0; i < 5; i++) {
-            System.out.println(String.format("Enter Symbol and value for %s hand cards, for example: heart king", number));
+            System.out.println(String.format("Enter CardSymbols and value for %s hand cards, for example: heart king", number));
             String[] cardAsString = scanIn.nextLine().split(" ");
             try {
-                Card card = new Card(Symbols.valueOf(cardAsString[0].toUpperCase()),
-                        Values.valueOf(cardAsString[1].toUpperCase()));
+                Card card = new Card(CardSymbols.valueOf(cardAsString[0].toUpperCase()),
+                        CardValues.valueOf(cardAsString[1].toUpperCase()));
                 hand.add(card);
             }
             catch (Exception e) {

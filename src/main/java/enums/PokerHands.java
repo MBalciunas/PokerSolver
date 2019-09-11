@@ -1,4 +1,4 @@
-package pokerhands;
+package enums;
 
 public enum PokerHands {
     HIGH_CARD,

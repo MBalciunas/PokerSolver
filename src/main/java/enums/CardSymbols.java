@@ -1,6 +1,6 @@
-package models;
+package enums;
 
-public enum Symbols {
+public enum CardSymbols {
     DIAMOND,
     SPADE,
     CLUB,

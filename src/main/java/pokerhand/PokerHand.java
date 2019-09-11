@@ -1,6 +1,7 @@
-package pokerhands;
+package pokerhand;
 
-import models.Card;
+import card.Card;
+import enums.PokerHands;
 
 import java.util.List;
 

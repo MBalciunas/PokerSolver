@@ -1,15 +1,17 @@
-package pokerhands;
+package pokerhand.pockerhandimpl;
 
-import models.Card;
+import card.Card;
+import pokerhand.CalculateHandUtils;
+import pokerhand.PokerHand;
+import enums.PokerHands;
 
 import java.util.List;
-import java.util.Map;
 
 public class FullHouse implements PokerHand {
     @Override
     public boolean isPokerHand(List<Card> hand) {
-        Map handValueCountMap = CalculateHandUtils.getValueCountMap(hand);
-        return handValueCountMap.containsValue(3L) && handValueCountMap.containsValue(2L);
+        return CalculateHandUtils.getCardValueCount(hand, 3) == 1 &&
+               CalculateHandUtils.getCardValueCount(hand, 2) == 1;
     }
 
     @Override

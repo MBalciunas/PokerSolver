@@ -1,10 +1,13 @@
-package pokerhands;
+package pokerhand.pockerhandimpl;
 
-import models.Card;
+import card.Card;
+import pokerhand.CalculateHandUtils;
+import pokerhand.PokerHand;
+import enums.PokerHands;
 
 import java.util.List;
 
-public class StraightFlush implements PokerHand  {
+public class StraightFlush implements PokerHand {
     @Override
     public boolean isPokerHand(List<Card> hand) {
         boolean isOneColor = CalculateHandUtils.isFlush(hand);
