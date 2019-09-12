@@ -21,6 +21,21 @@ public class FullHouse implements PokerHand {
 
     @Override
     public int compare(List<Card> firstHand, List<Card> secondHand) {
-        return 0;
+        List<Integer> firstHandValues = CalculateHandUtils.getDescendingSortedValues(firstHand);
+        List<Integer> secondHandValues =  CalculateHandUtils.getDescendingSortedValues(secondHand);
+        modifyListForPairValue(firstHand, firstHandValues);
+        modifyListForPairValue(secondHand, secondHandValues);
+        return CalculateHandUtils.compareCardValues(firstHandValues, secondHandValues);
+    }
+
+    private void modifyListForPairValue(List<Card> hand, List<Integer> handValues) {
+        modifyListForValueCount(hand, handValues, 2);
+        modifyListForValueCount(hand, handValues, 3);
+    }
+
+    private void modifyListForValueCount(List<Card> hand, List<Integer> handValues, int i) {
+        int threePairValue = CalculateHandUtils.getCardValues(hand, i).get(0);
+        handValues.remove(Integer.valueOf(threePairValue));
+        handValues.add(0, threePairValue);
     }
 }

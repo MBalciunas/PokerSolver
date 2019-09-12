@@ -21,6 +21,8 @@ public class Flush implements PokerHand {
 
     @Override
     public int compare(List<Card> firstHand, List<Card> secondHand) {
-        return 0;
+        List<Integer> firstHandValues = CalculateHandUtils.getDescendingSortedValues(firstHand);
+        List<Integer> secondHandValues = CalculateHandUtils.getDescendingSortedValues(secondHand);
+        return CalculateHandUtils.compareCardValues(firstHandValues, secondHandValues);
     }
 }

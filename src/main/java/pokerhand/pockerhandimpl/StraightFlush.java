@@ -6,6 +6,7 @@ import pokerhand.PokerHand;
 import enums.PokerHands;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StraightFlush implements PokerHand {
     @Override
@@ -23,6 +24,8 @@ public class StraightFlush implements PokerHand {
 
     @Override
     public int compare(List<Card> firstHand, List<Card> secondHand) {
-        return 0;
+        List<Integer> firstHandValues = CalculateHandUtils.getDescendingSortedValues(firstHand);
+        List<Integer> secondHandValues = CalculateHandUtils.getDescendingSortedValues(secondHand);
+        return Integer.compare(firstHandValues.get(0), secondHandValues.get(0));
     }
 }

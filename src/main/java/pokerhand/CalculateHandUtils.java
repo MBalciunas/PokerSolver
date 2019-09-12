@@ -31,6 +31,10 @@ public class CalculateHandUtils {
         return straight.equals(sortedValues);
     }
 
+    public static List<Integer> getDescendingSortedValues(List<Card> hand) {
+        return hand.stream().map(v -> v.getValue().ordinal()).sorted((a, b) -> b - a).collect(Collectors.toList());
+    }
+
     public static boolean isFlush(List<Card> cards) {
         return cards.stream().map(Card::getSymbol).distinct().count() == 1;
     }
@@ -39,9 +43,29 @@ public class CalculateHandUtils {
         return hand.stream().map(Card::getValue).collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
     }
 
-    public static long getCardValueCount(List<Card> hand, int count) {
-        Map<CardValues, Long> handValueCountMap = CalculateHandUtils.getValueCountMap(hand);
-        Stream stream = handValueCountMap.values().stream().filter(value -> value == count);
-        return stream.count();
+    public static int getCardValueCount(List<Card> hand, int count) {
+        return getCardValues(hand, count).size();
     }
+
+    public static List<Integer> getCardValues(List<Card> hand, int count) {
+        Map<CardValues, Long> handValueCountMap = CalculateHandUtils.getValueCountMap(hand);
+        List values = handValueCountMap.values().stream().filter(value -> value == count).map(v -> v.intValue()).collect(Collectors.toList());
+        return values;
+    }
+
+
+    public static int compareCardValues(List<Integer> firstHandValues, List<Integer> secondHandValues) {
+        if(firstHandValues.size() == 1 && secondHandValues.size() == 1) {
+            return Integer.compare(firstHandValues.get(0), secondHandValues.get(0));
         }
+        if(firstHandValues.get(0) > secondHandValues.get(0)) {
+            return 1;
+        }
+        if(firstHandValues.get(0) < secondHandValues.get(0)) {
+            return -1;
+        }
+        firstHandValues.remove(0);
+        secondHandValues.remove(0);
+        return compareCardValues(firstHandValues, secondHandValues);
+    }
+}

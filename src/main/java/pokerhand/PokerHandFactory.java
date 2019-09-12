@@ -3,11 +3,12 @@ package pokerhand;
 import card.Card;
 import pokerhand.pockerhandimpl.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class PokerHandFactory {
 
-    public static List<PokerHand> pokerHandMap = List.of(
+    public static List<PokerHand> pokerHandMap = Arrays.asList(
             new RoyalFlush(),
             new StraightFlush(),
             new FourOfAKind(),

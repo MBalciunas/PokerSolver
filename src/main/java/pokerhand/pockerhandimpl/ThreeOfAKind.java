@@ -21,6 +21,16 @@ public class ThreeOfAKind implements PokerHand {
 
     @Override
     public int compare(List<Card> firstHand, List<Card> secondHand) {
-        return 0;
+        List<Integer> firstHandValues = CalculateHandUtils.getDescendingSortedValues(firstHand);
+        List<Integer> secondHandValues =  CalculateHandUtils.getDescendingSortedValues(secondHand);
+        modifyListForPairValue(firstHand, firstHandValues);
+        modifyListForPairValue(secondHand, secondHandValues);
+        return CalculateHandUtils.compareCardValues(firstHandValues, secondHandValues);
+    }
+
+    private void modifyListForPairValue(List<Card> hand, List<Integer> handValues) {
+        int pairValue = CalculateHandUtils.getCardValues(hand, 3).get(0);
+        handValues.remove(Integer.valueOf(pairValue));
+        handValues.add(0, pairValue);
     }
 }

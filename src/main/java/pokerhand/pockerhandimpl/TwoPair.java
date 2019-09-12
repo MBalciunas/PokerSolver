@@ -20,6 +20,26 @@ public class TwoPair implements PokerHand {
 
     @Override
     public int compare(List<Card> firstHand, List<Card> secondHand) {
-        return 0;
+        List<Integer> firstHandValues = CalculateHandUtils.getDescendingSortedValues(firstHand);
+        List<Integer> secondHandValues =  CalculateHandUtils.getDescendingSortedValues(secondHand);
+        modifyListForPairValue(firstHand, firstHandValues);
+        modifyListForPairValue(secondHand, secondHandValues);
+        return CalculateHandUtils.compareCardValues(firstHandValues, secondHandValues);
+    }
+
+    private void modifyListForPairValue(List<Card> hand, List<Integer> handValues) {
+        List<Integer> pairValue = CalculateHandUtils.getCardValues(hand, 2);
+        if(pairValue.get(0) > pairValue.get(1)) {
+            handValues.remove(Integer.valueOf(pairValue.get(1)));
+            handValues.add(0, pairValue.get(1));
+            handValues.remove(Integer.valueOf(pairValue.get(0)));
+            handValues.add(0, pairValue.get(0));
+        }
+        else {
+            handValues.remove(Integer.valueOf(pairValue.get(0)));
+            handValues.add(0, pairValue.get(0));
+            handValues.remove(Integer.valueOf(pairValue.get(1)));
+            handValues.add(0, pairValue.get(1));
+        }
     }
 }
