@@ -23,16 +23,14 @@ public class Main {
             PokerHand secondPokerHand = PokerHandFactory.getPokerHand(secondHand);
 
             if(firstPokerHand.getPokerHand().ordinal() > secondPokerHand.getPokerHand().ordinal()) {
-                System.out.println(String.format("First hand wins with %s vs %s", firstPokerHand.getPokerHand(), secondPokerHand.getPokerHand()));
+                printWinnerMessage(firstPokerHand, secondPokerHand, "First");
             }
             else if(firstPokerHand.getPokerHand().ordinal() < secondPokerHand.getPokerHand().ordinal()) {
-                System.out.println(String.format("Second hand wins with %s vs %s", secondPokerHand.getPokerHand(), firstPokerHand.getPokerHand()));
+                printWinnerMessage(firstPokerHand, secondPokerHand, "Second");
             }
             else {
-                //TODO implement compare method for every poker hand.
-                System.out.println("It's a tie!");
+                determineSamePokerHandWinner(firstHand, secondHand, firstPokerHand, secondPokerHand);
             }
-
             System.out.println("Play again? y/n");
             String answer = scanIn.nextLine();
 
@@ -41,6 +39,23 @@ public class Main {
             }
         }
         System.out.println("Goodbye!, come to play again :).");
+    }
+
+    private static void determineSamePokerHandWinner(List<Card> firstHand, List<Card> secondHand, PokerHand firstPokerHand, PokerHand secondPokerHand) {
+        switch (firstPokerHand.compare(firstHand, secondHand)){
+            case 1:
+                printWinnerMessage(firstPokerHand, secondPokerHand, "First");
+                break;
+            case -1:
+                printWinnerMessage(firstPokerHand, secondPokerHand, "Second");
+                break;
+            case 0:
+                System.out.println(String.format("It's a draw with %s hand", firstPokerHand.getPokerHand()));
+        }
+    }
+
+    private static void printWinnerMessage(PokerHand firstPokerHand, PokerHand secondPokerHand, String handNumber) {
+        System.out.println(String.format("%s hand wins with %s vs %s", handNumber, secondPokerHand.getPokerHand(), firstPokerHand.getPokerHand()));
     }
 
     private static void fillHandWithCards(List<Card> hand, String number) {
